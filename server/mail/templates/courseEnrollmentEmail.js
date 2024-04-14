@@ -67,7 +67,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
   
   <body>
       <div class="container">
-          <a href="http://localhost:3000"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png"
+          <a href="https://studynotion-frontend-75x4zppz3-sandip-kushwahas-projects.vercel.app/"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png"
                   alt="StudyNotion Logo"></a>
           <div class="message">Course Registration Confirmation</div>
           <div class="body">
@@ -76,7 +76,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
                   are excited to have you as a participant!</p>
               <p>Please log in to your learning dashboard to access the course materials and start your learning journey.
               </p>
-              <a class="cta" href="http://localhost:3000/dashboard/my-profile">Go to Dashboard</a>
+              <a class="cta" href="https://studynotion-frontend-75x4zppz3-sandip-kushwahas-projects.vercel.app/dashboard/my-profile">Go to Dashboard</a>
           </div>
           <div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
                   href="mailto:sandipkushwaha2437@gmail.com">sandipkushwaha2437@gmail.com</a>. We are here to help!</div>
