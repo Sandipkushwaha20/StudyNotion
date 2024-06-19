@@ -56,6 +56,7 @@
     "server": "cd server && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
   },
+  "author": "sandip kushwaha",
   "eslintConfig": {
     "extends": [
       "react-app",
