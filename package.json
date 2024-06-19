@@ -74,6 +74,7 @@
       "last 1 safari version"
     ]
   },
+  "author": "sandip kushwaha",
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "concurrently": "^8.0.1",
