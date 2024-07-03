@@ -28,7 +28,7 @@
     "nodemon": "^3.1.0",
     "otp-generator": "^4.0.1",
     "razorpay": "^2.9.2",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
@@ -56,7 +56,7 @@
     "server": "cd server && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
   },
-  "author": "sandip kushwaha",
+  "author": "Sandip Kushwaha",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -75,7 +75,6 @@
       "last 1 safari version"
     ]
   },
-  "author": "sandip kushwaha",
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "concurrently": "^8.0.1",
