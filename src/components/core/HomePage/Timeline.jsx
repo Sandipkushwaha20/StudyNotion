@@ -1,5 +1,5 @@
 import React from "react";
-import TimeLineImage from "../../../assets/Images/TimelineImage.png";
+import TimeLineImage from "../../../assets/Images/TimelineImage.mp4";
 import Logo1 from "../../../assets/TimeLineLogo/Logo1.svg";
 import Logo2 from "../../../assets/TimeLineLogo/Logo2.svg";
 import Logo3 from "../../../assets/TimeLineLogo/Logo3.svg";
@@ -74,11 +74,15 @@ const TimelineSection = () => {
             </div>
             <div></div>
           </div>
-          <img
-            src={TimeLineImage}
-            alt="timelineImage"
+          
+          <video
+            muted
+            loop
+            autoPlay
             className="shadow-white shadow-[20px_20px_0px_0px] object-cover h-[400px] lg:h-fit"
-          />
+          ><source src={TimeLineImage} type="video/mp4" />
+          </video>
+
         </div>
       </div>
     </div>
