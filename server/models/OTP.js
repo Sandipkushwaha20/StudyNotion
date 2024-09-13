@@ -17,7 +17,7 @@ const OTPSchema = new mongoose.Schema({
 	},
 });
 
-// Define a function to send emails
+// Define a function to send emails, before creating the entry in DB
 async function sendVerificationEmail(email, otp) {
 	// Create a transporter to send emails
 
@@ -27,7 +27,7 @@ async function sendVerificationEmail(email, otp) {
 	try {
 		const mailResponse = await mailSender(
 			email,
-			"Verification Email",
+			"Verification Email from StudyNotion",
 			emailTemplate(otp)
 		);
 		console.log("Email sent successfully: ", mailResponse.response);
@@ -44,10 +44,10 @@ OTPSchema.pre("save", async function (next) {
 	console.log("New document saved to database");
 
 	// Only send an email when a new document is created
-	if (this.isNew) {
+	if (this.isNew) { //		current email , current object OTP
 		await sendVerificationEmail(this.email, this.otp);
 	}
-	next();
+	next(); // move to the next middleware
 });
 
 const OTP = mongoose.model("OTP", OTPSchema);

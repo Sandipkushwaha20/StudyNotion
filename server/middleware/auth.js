@@ -6,6 +6,7 @@ const User = require("../models/User");
 dotenv.config();
 
 // This function is used as middleware to authenticate user requests
+//*******Authentication Middleware**************** */
 exports.auth = async (req, res, next) => {
 	try {
 		// Extracting JWT from request cookies, body or header
@@ -42,6 +43,9 @@ exports.auth = async (req, res, next) => {
 		});
 	}
 };
+
+
+//*******Middleware for Students************* */
 exports.isStudent = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
@@ -59,6 +63,9 @@ exports.isStudent = async (req, res, next) => {
 			.json({ success: false, message: `User Role Can't be Verified` });
 	}
 };
+
+
+//***********Middleware for Admin******************** */
 exports.isAdmin = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
@@ -76,6 +83,9 @@ exports.isAdmin = async (req, res, next) => {
 			.json({ success: false, message: `User Role Can't be Verified` });
 	}
 };
+
+
+//*********MIddleware for Instructor*******************/
 exports.isInstructor = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
