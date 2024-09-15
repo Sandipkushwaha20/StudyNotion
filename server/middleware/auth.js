@@ -23,14 +23,15 @@ exports.auth = async (req, res, next) => {
 		try {
 			// Verifying the JWT using the secret key stored in environment variables
 			const decode = await jwt.verify(token, process.env.JWT_SECRET);
-			console.log(decode);
-			// Storing the decoded JWT payload in the request object for further use
+			// console.log(decode);
+			// Storing the decoded JWT payload in the request object for further use, 
+			//this will also store the accountType which we will use furthor the check accountTpye(isStudent or isInstructor)
 			req.user = decode;
 		} catch (error) {
 			// If JWT verification fails, return 401 Unauthorized response
 			return res
 				.status(401)
-				.json({ success: false, message: "token is invalid" });
+				.json({ success: false, message: "token is invalid." });
 		}
 
 		// If JWT is valid, move on to the next middleware or request handler
@@ -39,7 +40,7 @@ exports.auth = async (req, res, next) => {
 		// If there is an error during the authentication process, return 401 Unauthorized response
 		return res.status(401).json({
 			success: false,
-			message: `Something Went Wrong While Validating the Token`,
+			message: `Something Went Wrong While Validating the Token.`,
 		});
 	}
 };
@@ -54,7 +55,7 @@ exports.isStudent = async (req, res, next) => {
 			return res.status(401).json({
 				success: false,
 				message: "This is a Protected Route for Students",
-			});
+			}); 
 		}
 		next();
 	} catch (error) {
@@ -89,9 +90,9 @@ exports.isAdmin = async (req, res, next) => {
 exports.isInstructor = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
-		console.log(userDetails);
+		// console.log(userDetails);
 
-		console.log(userDetails.accountType);
+		// console.log(userDetails.accountType);
 
 		if (userDetails.accountType !== "Instructor") {
 			return res.status(401).json({

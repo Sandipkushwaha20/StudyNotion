@@ -52,6 +52,7 @@ const userSchema = new mongoose.Schema(
         ref: "Course",
       },
     ],
+    //every user have there own token and resetPasswordExpires time in this schema
     token: {
       type: String,
     },
