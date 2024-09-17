@@ -9,10 +9,11 @@ const { convertSecondsToDuration } = require("../utils/secToDuration")
 
 
 
-// Function to create a new course
+//*************Function to create a new course****************
 exports.createCourse = async (req, res) => {
   try {
     // Get user ID from request object
+    //we already added user in middleware like req.user = decode
     const userId = req.user.id
 
     // Get all required fields from request body
@@ -27,6 +28,7 @@ exports.createCourse = async (req, res) => {
       instructions,
       //  _instructions,
     } = req.body
+
     // Get thumbnail image from request files
     const thumbnail = req.files.thumbnailImage
 
@@ -45,7 +47,7 @@ exports.createCourse = async (req, res) => {
       !price ||
       !tag.length ||
       !thumbnail ||
-      !category ||
+      !category || //this is the id bc I store it as id in course Schema
       !instructions.length
     ) {
       return res.status(400).json({
@@ -56,7 +58,8 @@ exports.createCourse = async (req, res) => {
     if (!status || status === undefined) {
       status = "Draft"
     }
-    // Check if the user is an instructor
+
+    //I will take Instructor details bc I need to store it's details in course
     const instructorDetails = await User.findById(userId, {
       accountType: "Instructor",
     })
@@ -68,7 +71,7 @@ exports.createCourse = async (req, res) => {
       })
     }
 
-    // Check if the tag given is valid
+    // Check if the category given is valid
     const categoryDetails = await Category.findById(category)
     if (!categoryDetails) {
       return res.status(404).json({
@@ -76,17 +79,20 @@ exports.createCourse = async (req, res) => {
         message: "Category Details Not Found",
       })
     }
+
     // Upload the Thumbnail to Cloudinary
     const thumbnailImage = await uploadImageToCloudinary(
-      thumbnail,
-      process.env.FOLDER_NAME
+      thumbnail, //this is the exact file
+      process.env.FOLDER_NAME // this is the file where we want to upload
     )
-    console.log(thumbnailImage)
+    // console.log(thumbnailImage)
+
+
     // Create a new course with the given details
     const newCourse = await Course.create({
       courseName,
       courseDescription,
-      instructor: instructorDetails._id,
+      instructor: instructorDetails._id, //Instructor is a refid in Course Schema so I will use instructorDetails
       whatYouWillLearn: whatYouWillLearn,
       price,
       tag,
@@ -101,24 +107,26 @@ exports.createCourse = async (req, res) => {
       {
         _id: instructorDetails._id,
       },
-      {
+      { //I want to insert courseId in User's course
         $push: {
           courses: newCourse._id,
         },
       },
       { new: true }
     )
+
+
     // Add the new course to the Categories
-    const categoryDetails2 = await Category.findByIdAndUpdate(
-      { _id: category },
+    await Category.findByIdAndUpdate(
+      { _id: category }, //find id of category then
       {
-        $push: {
+        $push: { //push the course
           courses: newCourse._id,
         },
       },
       { new: true }
     )
-    console.log("HEREEEEEEEE", categoryDetails2)
+    // console.log("HEREEEEEEEE", categoryDetails2)
     // Return the new course and a success message
     res.status(200).json({
       success: true,
@@ -138,7 +146,7 @@ exports.createCourse = async (req, res) => {
 
 
 
-// Edit Course Details
+//*********Edit Course Details**************
 exports.editCourse = async (req, res) => {
   try {
     const { courseId } = req.body
@@ -208,12 +216,12 @@ exports.editCourse = async (req, res) => {
 }
 
 
-// Get Course List
+//************Get Course List************
 exports.getAllCourses = async (req, res) => {
   try {
     const allCourses = await Course.find(
       { status: "Published" },
-      {
+      { //your course should contain the following details
         courseName: true,
         price: true,
         thumbnail: true,

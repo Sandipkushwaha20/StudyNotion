@@ -3,19 +3,27 @@ const Category = require("../models/Category")
 function getRandomInt(max) {
   return Math.floor(Math.random() * max)
 }
+
+//*************Create a Category handler function***************
 exports.createCategory = async (req, res) => {
   try {
+    //fetch data
     const { name, description } = req.body
+    //Validation
     if (!name) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" })
     }
-    const CategorysDetails = await Category.create({
+
+    //create entry in DB
+    await Category.create({
       name: name,
       description: description,
     })
-    console.log(CategorysDetails)
+
+    // console.log(CategorysDetails)
+
     return res.status(200).json({
       success: true,
       message: "Categorys Created Successfully",
@@ -28,9 +36,11 @@ exports.createCategory = async (req, res) => {
   }
 }
 
+
+//********showAllCategories handler********/
 exports.showAllCategories = async (req, res) => {
-  try {
-    const allCategorys = await Category.find()
+  try {                                       // it meand make sure this Category will contain name and description
+    const allCategorys = await Category.find() //Category.find({} , {name:true , description:true})
     res.status(200).json({
       success: true,
       data: allCategorys,
@@ -43,6 +53,8 @@ exports.showAllCategories = async (req, res) => {
   }
 }
 
+
+//********categoryPageDetails handler********/
 exports.categoryPageDetails = async (req, res) => {
   try {
     const { categoryId } = req.body
