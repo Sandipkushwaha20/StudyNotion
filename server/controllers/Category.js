@@ -4,7 +4,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max)
 }
 
-//*************Create a Category handler function***************
+//! *************Create a Category handler function***************
 exports.createCategory = async (req, res) => {
   try {
     //fetch data
@@ -37,7 +37,7 @@ exports.createCategory = async (req, res) => {
 }
 
 
-//********showAllCategories handler********/
+//! ********showAllCategories handler********/
 exports.showAllCategories = async (req, res) => {
   try {                                       // it meand make sure this Category will contain name and description
     const allCategorys = await Category.find() //Category.find({} , {name:true , description:true})
@@ -54,7 +54,7 @@ exports.showAllCategories = async (req, res) => {
 }
 
 
-//********categoryPageDetails handler********/
+//! ********categoryPageDetails handler********/
 exports.categoryPageDetails = async (req, res) => {
   try {
     const { categoryId } = req.body
@@ -68,7 +68,7 @@ exports.categoryPageDetails = async (req, res) => {
       })
       .exec()
 
-    console.log("SELECTED COURSE", selectedCategory)
+    // console.log("SELECTED COURSE", selectedCategory)
     // Handle the case when the category is not found
     if (!selectedCategory) {
       console.log("Category not found.")
@@ -76,6 +76,7 @@ exports.categoryPageDetails = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Category not found" })
     }
+
     // Handle the case when there are no courses
     if (selectedCategory.courses.length === 0) {
       console.log("No courses found for the selected category.")
@@ -87,7 +88,7 @@ exports.categoryPageDetails = async (req, res) => {
 
     // Get courses for other categories
     const categoriesExceptSelected = await Category.find({
-      _id: { $ne: categoryId },
+      _id: { $ne: categoryId }, //ne => not equal
     })
     let differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
@@ -98,7 +99,7 @@ exports.categoryPageDetails = async (req, res) => {
         match: { status: "Published" },
       })
       .exec()
-    console.log()
+    // console.log()
 
     
     // Get top-selling courses across all categories

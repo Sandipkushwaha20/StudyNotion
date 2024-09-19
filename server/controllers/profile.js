@@ -7,9 +7,11 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const mongoose = require("mongoose")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
 
-// Method for updating a profile
+//! ***********Method for updating a profile****************
 exports.updateProfile = async (req, res) => {
+  
   try {
+    //get data
     const {
       firstName = "",
       lastName = "",
@@ -18,10 +20,13 @@ exports.updateProfile = async (req, res) => {
       contactNumber = "",
       gender = "",
     } = req.body
+
+    //get userId
     const id = req.user.id
 
     // Find the profile by id
     const userDetails = await User.findById(id)
+    //                                      find profileId
     const profile = await Profile.findById(userDetails.additionalDetails)
 
     const user = await User.findByIdAndUpdate(id, {
@@ -36,7 +41,8 @@ exports.updateProfile = async (req, res) => {
     profile.contactNumber = contactNumber
     profile.gender = gender
 
-    // Save the updated profile
+    // Save the updated profile, 
+    //here object is already created so we don't need to create it, I will save it
     await profile.save()
 
     // Find the updated user details
@@ -58,21 +64,28 @@ exports.updateProfile = async (req, res) => {
   }
 }
 
+//! ***********Method for deleting a profile****************
 exports.deleteAccount = async (req, res) => {
   try {
+    //get user id
     const id = req.user.id
-    console.log(id)
+    // console.log(id)
+    //find user
     const user = await User.findById({ _id: id })
+    // validation
     if (!user) {
       return res.status(404).json({
         success: false,
         message: "User not found",
       })
     }
+
     // Delete Assosiated Profile with the User
     await Profile.findByIdAndDelete({
       _id: new mongoose.Types.ObjectId(user.additionalDetails),
     })
+
+    //Unrole user from all enrolled courses
     for (const courseId of user.courses) {
       await Course.findByIdAndUpdate(
         courseId,
@@ -80,6 +93,7 @@ exports.deleteAccount = async (req, res) => {
         { new: true }
       )
     }
+
     // Now Delete User
     await User.findByIdAndDelete({ _id: id })
     res.status(200).json({
@@ -95,13 +109,17 @@ exports.deleteAccount = async (req, res) => {
   }
 }
 
+//! ***********Method for getAllUserDetails ****************
 exports.getAllUserDetails = async (req, res) => {
   try {
+    //get userId
     const id = req.user.id
+    //
     const userDetails = await User.findById(id)
-      .populate("additionalDetails")
+      .populate("additionalDetails") //now I will Get profile data populated
       .exec()
-    console.log(userDetails)
+      
+    // console.log(userDetails)
     res.status(200).json({
       success: true,
       message: "User Data fetched successfully",
@@ -115,6 +133,7 @@ exports.getAllUserDetails = async (req, res) => {
   }
 }
 
+//! ***********Method for updateDisplayPicture ****************
 exports.updateDisplayPicture = async (req, res) => {
   try {
     const displayPicture = req.files.displayPicture
@@ -144,6 +163,7 @@ exports.updateDisplayPicture = async (req, res) => {
   }
 }
 
+//! ***********Method for getEnrolledCourses ****************
 exports.getEnrolledCourses = async (req, res) => {
   try {
     const userId = req.user.id
@@ -210,6 +230,7 @@ exports.getEnrolledCourses = async (req, res) => {
   }
 } 
 
+//! ***********Method for instructorDashboard ****************
 exports.instructorDashboard = async (req, res) => {
   try {
     const courseDetails = await Course.find({ instructor: req.user.id })

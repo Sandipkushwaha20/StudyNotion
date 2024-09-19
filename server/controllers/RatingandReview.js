@@ -2,16 +2,17 @@ const RatingAndReview = require("../models/RatingandReview")
 const Course = require("../models/Course")
 const mongoose = require("mongoose")
 
-// Create a new rating and review
+//! ***********Create a new rating and review*********
 exports.createRating = async (req, res) => {
   try {
+    //this userId was inserted into the middleware during authentication
     const userId = req.user.id
+    //fetch data from req. body
     const { rating, review, courseId } = req.body
 
-    // Check if the user is enrolled in the course
-
+    // Check if user enrolled in this course or not
     const courseDetails = await Course.findOne({
-      _id: courseId,
+      _id: courseId, //             eq is the equal operator
       studentsEnroled: { $elemMatch: { $eq: userId } },
     })
 
@@ -66,7 +67,7 @@ exports.createRating = async (req, res) => {
   }
 }
 
-// Get the average rating for a course
+//! *********Get the average rating for a course*********
 exports.getAverageRating = async (req, res) => {
   try {
     const courseId = req.body.courseId
@@ -75,12 +76,12 @@ exports.getAverageRating = async (req, res) => {
     const result = await RatingAndReview.aggregate([
       {
         $match: {
-          course: new mongoose.Types.ObjectId(courseId), // Convert courseId to ObjectId
+          course: new mongoose.Types.ObjectId(courseId), // Convert courseId to ObjectId from string
         },
       },
       {
         $group: {
-          _id: null,
+          _id: null, //null means map all entry into single group
           averageRating: { $avg: "$rating" },
         },
       },
@@ -105,7 +106,7 @@ exports.getAverageRating = async (req, res) => {
   }
 }
 
-// Get all rating and reviews
+//! ********Get all rating and reviews************
 exports.getAllRatingReview = async (req, res) => {
   try {
     const allReviews = await RatingAndReview.find({})

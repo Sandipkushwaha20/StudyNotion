@@ -26,7 +26,7 @@ database.connect();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-	cors({
+	cors({ //it is used to intertain the frontend req by backend
 		origin: "*",
 		credentials: true,
 	})

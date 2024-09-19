@@ -10,10 +10,11 @@ const {
 const { paymentSuccessEmail } = require("../mail/templates/paymentSuccessEmail")
 const CourseProgress = require("../models/CourseProgress")
 
-// Capture the payment and initiate the Razorpay order
+ 
+//! ***********Capture the payment and initiate the Razorpay order************
 exports.capturePayment = async (req, res) => {
   const { courses } = req.body
-  const userId = req.user.id
+  const userId = req.user.id //this user id is string type
   if (courses.length === 0) {
     return res.json({ success: false, message: "Please Provide Course ID" });
   }
@@ -34,6 +35,8 @@ exports.capturePayment = async (req, res) => {
       }
 
       // Check if the user is already enrolled in the course
+      //in course model user Id is stored in the from of Object and current user id is 
+      //is in the from of string, so convert it from string to ObjectId by the following code
       const uid = new mongoose.Types.ObjectId(userId)
       if (course.studentsEnroled.includes(uid)) {
         return res
@@ -58,7 +61,7 @@ exports.capturePayment = async (req, res) => {
   try {
     // Initiate the payment using Razorpay
     const paymentResponse = await instance.orders.create(options)
-    console.log(paymentResponse)
+    // console.log(paymentResponse)
     res.json({
       success: true,
       data: paymentResponse,
@@ -71,7 +74,8 @@ exports.capturePayment = async (req, res) => {
   }
 }
 
-// verify the payment
+
+//! *********verify the payment***************
 exports.verifyPayment = async (req, res) => {
   const razorpay_order_id = req.body?.razorpay_order_id
   const razorpay_payment_id = req.body?.razorpay_payment_id
@@ -87,26 +91,30 @@ exports.verifyPayment = async (req, res) => {
     !courses ||
     !userId
   ) {
-    return res.status(200).json({ success: false, message: "Payment Failed" })
+    return res.status(401).json({ success: false, message: "Payment Failed" })
   }
 
   let body = razorpay_order_id + "|" + razorpay_payment_id
 
+  //Hmac => means-> hashed based message authentication code
+  //sha => means-> secure hashing alog. 
   const expectedSignature = crypto
     .createHmac("sha256", process.env.RAZORPAY_SECRET)
     .update(body.toString())
-    .digest("hex")
-
+    .digest("hex") //when we run hashing algo. on some text, then output is known as special term digest
+    //digest is generaly in hexa decimal formate
+    
   if (expectedSignature === razorpay_signature) {
     //if matched then enroll student into course 
     await enrollStudents(courses, userId, res)
     return res.status(200).json({ success: true, message: "Payment Verified" })
   }
 
-  return res.status(200).json({ success: false, message: "Payment Failed" })
+  return res.status(401).json({ success: false, message: "Payment Failed" })
 }
 
-// Send Payment Success Email
+
+//! **********Send Payment Success Email************
 exports.sendPaymentSuccessEmail = async (req, res) => {
   const { orderId, paymentId, amount } = req.body
 
@@ -142,8 +150,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 }
 
 
-
-// enroll the student in the courses
+//! *************enroll the student in the courses**************
 const enrollStudents = async (courses, userId, res) => {
   if (!courses || !userId) {
     return res
@@ -165,13 +172,14 @@ const enrollStudents = async (courses, userId, res) => {
           .status(500)
           .json({ success: false, error: "Course not found" })
       }
-      console.log("Updated course: ", enrolledCourse)
+      // console.log("Updated course: ", enrolledCourse)
 
       const courseProgress = await CourseProgress.create({
         courseID: courseId,
         userId: userId,
         completedVideos: [],
       })
+
       // Find the student and add the course to their list of enrolled courses
       const enrolledStudent = await User.findByIdAndUpdate(
         userId,
@@ -184,7 +192,7 @@ const enrollStudents = async (courses, userId, res) => {
         { new: true }
       )
 
-      console.log("Enrolled student: ", enrolledStudent)
+      // console.log("Enrolled student: ", enrolledStudent)
       // Send an email notification to the enrolled student
       const emailResponse = await mailSender(
         enrolledStudent.email,
@@ -195,7 +203,7 @@ const enrollStudents = async (courses, userId, res) => {
         )
       )
 
-      console.log("Email sent successfully: ", emailResponse.response)
+      // console.log("Email sent successfully: ", emailResponse.response)
     } catch (error) {
       console.log(error)
       return res.status(400).json({ success: false, error: error.message })

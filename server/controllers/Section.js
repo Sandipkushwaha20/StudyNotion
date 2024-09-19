@@ -1,10 +1,12 @@
 const Section = require("../models/Section")
 const Course = require("../models/Course")
 const SubSection = require("../models/Subsection")
-// CREATE a new section
+
+//*******CREATE a new section***************
 exports.createSection = async (req, res) => {
   try {
     // Extract the required properties from the request body
+    //here courseId , so that I can update the course
     const { sectionName, courseId } = req.body
 
     // Validate the input
@@ -20,17 +22,18 @@ exports.createSection = async (req, res) => {
 
     // Add the new section to the course's content array
     const updatedCourse = await Course.findByIdAndUpdate(
-      courseId,
+      courseId, //I will find using courseId
       {
         $push: {
           courseContent: newSection._id,
         },
       },
       { new: true }
-    )
-      .populate({
+    ) //If I will not populate than My updatedCourse will only contain ObjectId not exact object
+    //If want exact object than I need to populate it
+      .populate({ //here I'm populating subsection and
         path: "courseContent",
-        populate: {
+        populate: { // here I'm population subsection
           path: "subSection",
         },
       })
@@ -52,13 +55,17 @@ exports.createSection = async (req, res) => {
   }
 }
 
-// UPDATE a section
+
+//**************UPDATE a section***************
 exports.updateSection = async (req, res) => {
   try {
+    //there will be not need to update Section in course bc course contain Section Id not section data
+    //Section Id will be same as previous SectionId in course so there is no need to update sectionID
     const { sectionName, sectionId, courseId } = req.body
+
     const section = await Section.findByIdAndUpdate(
-      sectionId,
-      { sectionName },
+      sectionId, //kiske basis per find karna chahte ho aur
+      { sectionName }, //kya update karna chahte ho
       { new: true }
     )
     const course = await Course.findById(courseId)
@@ -69,7 +76,8 @@ exports.updateSection = async (req, res) => {
         },
       })
       .exec()
-    console.log(course)
+    // console.log(course)
+
     res.status(200).json({
       success: true,
       message: section,
@@ -85,7 +93,8 @@ exports.updateSection = async (req, res) => {
   }
 }
 
-// DELETE a section
+
+//****************DELETE a section****************
 exports.deleteSection = async (req, res) => {
   try {
     const { sectionId, courseId } = req.body
@@ -95,7 +104,8 @@ exports.deleteSection = async (req, res) => {
       },
     })
     const section = await Section.findById(sectionId)
-    console.log(sectionId, courseId)
+    // console.log(sectionId, courseId)
+    
     if (!section) {
       return res.status(404).json({
         success: false,
