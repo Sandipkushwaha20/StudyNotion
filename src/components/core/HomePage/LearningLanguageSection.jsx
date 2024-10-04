@@ -31,7 +31,7 @@ const LearningLanguageSection = () => {
                 src={Plan_your_lessons}
                 alt=""
                 className="object-contain  lg:-ml-36 lg:-mt-5 -mt-16"
-              />
+              /> 
             </div>
           </div>
 

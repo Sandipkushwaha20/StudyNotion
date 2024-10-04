@@ -18,6 +18,7 @@ import TimelineSection from "../components/core/HomePage/Timeline"
 function Home() {
   return (
     <div>
+    
       {/* Section 1 */}
       <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
         {/* Become a Instructor Button */}
@@ -68,6 +69,7 @@ function Home() {
             <source src={Banner} type="video/mp4" />
           </video>
         </div>
+
 
         {/* Code Section 1  */}
         <div>

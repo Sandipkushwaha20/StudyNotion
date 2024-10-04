@@ -44,6 +44,7 @@ function Navbar() {
   // };
 
   const matchRoute = (route) => {
+                  //first one , second one, if both will matched then it will return matched object 
     return matchPath({ path: route }, location.pathname);
   };
 
@@ -110,16 +111,9 @@ function Navbar() {
             ))}
           </ul>
         </nav>
-        
-        {/* Three-bar drop-down menu for small devices */}
-        <button
-          className="mr-4 md:hidden mb-12"
-        >
-         <SideBar/>
-        </button>
 
         {/* Login / Signup / Dashboard */}
-        <div className="hidden items-center gap-x-4 md:flex">
+        <div className="items-center gap-x-4 flex">
           {user && user.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
             <Link to="/dashboard/cart" className="relative">
               <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
@@ -130,6 +124,7 @@ function Navbar() {
               )}
             </Link>
           )}
+          {/* if token is null then user is not login then show login & signUp button */}
           {token === null && (
             <Link to="/login">
               <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
@@ -147,6 +142,13 @@ function Navbar() {
           {token !== null && <ProfileDropdown />}
         </div>
 
+        {/* Three-bar drop-down menu for small devices */}
+        <button
+          className="mr-4 md:hidden mb-12"
+        >
+         <SideBar/>
+        </button>
+        
       </div>
     </div>
   );

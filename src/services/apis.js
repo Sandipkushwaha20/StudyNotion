@@ -1,3 +1,4 @@
+//! here mentioned all links through which we call
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
 // AUTH ENDPOINTS
@@ -50,7 +51,7 @@ export const ratingsEndpoints = {
 }
 
 // CATAGORIES API
-export const categories = {
+export const categories = { //    this showAllCategories is the name of controller
   CATEGORIES_API: BASE_URL + "/course/showAllCategories",
 }
 

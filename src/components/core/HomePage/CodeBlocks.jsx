@@ -34,6 +34,7 @@ const CodeBlocks = ({
               <FaArrowRight />
             </div>
           </CTAButton>
+
           <CTAButton active={ctabtn2.active} linkto={ctabtn2.link}>
             {ctabtn2.btnText}
           </CTAButton>

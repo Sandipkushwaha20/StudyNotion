@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//! through this create method we can request get or put or post
 export const axiosInstance = axios.create({});
 
 export const apiConnector = (method, url, bodyData, headers, params) => {
