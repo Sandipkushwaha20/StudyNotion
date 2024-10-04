@@ -27,9 +27,11 @@ function Navbar() {
   // const [showMenu, setShowMenu] = useState(false); // State to track menu visibility
 
   useEffect(() => {
+    //fetch links
     (async () => {
       setLoading(true);
       try {
+        //API call to fetch all categories
         const res = await apiConnector("GET", categories.CATEGORIES_API);
         setSubLinks(res.data.data);
       } catch (error) {
