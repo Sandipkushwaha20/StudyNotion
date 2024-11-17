@@ -155,38 +155,38 @@ To set up and run the project locally:
 
     <!-- ```plaintext -->
     ##### Mail Configuration
-    MAIL_HOST=           # Host address for your email provider (e.g., smtp.example.com)
-    MAIL_USER=           # Email address or username for authentication
-    MAIL_PASS=           # Password or App-specific password for authentication
+   - MAIL_HOST=           # Host address for your email provider (e.g., smtp.example.com)
+   - MAIL_USER=           # Email address or username for authentication
+   - MAIL_PASS=           # Password or App-specific password for authentication
 
     ##### JWT Configuration
-    JWT_SECRET=          # Secret key for signing JWT tokens
+   - JWT_SECRET=          # Secret key for signing JWT tokens
 
     ##### Folder Configuration
-    FOLDER_NAME=         # Name of the folder where files will be stored
+   - FOLDER_NAME=         # Name of the folder where files will be stored
 
     ##### Razorpay Payment Gateway
-    RAZORPAY_KEY=        # Razorpay API key
-    RAZORPAY_SECRET=     # Razorpay secret key
+   - RAZORPAY_KEY=        # Razorpay API key
+   - RAZORPAY_SECRET=     # Razorpay secret key
 
     ##### Cloudinary Configuration
-    CLOUD_NAME=          # Your Cloudinary cloud name
-    API_KEY=             # Your Cloudinary API key
-    API_SECRET=          # Your Cloudinary API secret
+   - CLOUD_NAME=          # Your Cloudinary cloud name
+   - API_KEY=             # Your Cloudinary API key
+   - API_SECRET=          # Your Cloudinary API secret
 
     ##### MongoDB Configuration
-    MONGODB_URL=         # MongoDB connection string
+   - MONGODB_URL=         # MongoDB connection string
 
     ##### Server Configuration
-    PORT=4000            # Port on which the server will run
+   - PORT=4000            # Port on which the server will run
 
-    #### Add another `.env` file *outside the server folder*
+   #### Add another `.env` file *outside the server folder*
 
-      ##### React App Base URL
-        REACT_APP_BASE_URL=  # Base URL for the backend API (e.g., https://api.example.com)
+    ##### React App Base URL
+   - REACT_APP_BASE_URL=  # Base URL for the backend API (e.g., https://api.example.com)
 
-      ##### Razorpay Configuration
-        RAZORPAY_KEY=        # Razorpay API key for payment processing
+    ##### Razorpay Configuration
+   - RAZORPAY_KEY=        # Razorpay API key for payment processing
 
     ![FolderStructure](./public//images/FolderStructure.png)
 
