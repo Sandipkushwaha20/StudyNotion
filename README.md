@@ -13,8 +13,9 @@ StudyNotion is a fully functional **ed-tech platform** designed to enable users 
 5. [Back-end](#back-end)
 6. [API Design](#api-design)
 7. [Deployment](#deployment)
-8. [Future Enhancements](#future-enhancements)
-9. [Conclusion](#conclusion)
+8. [Running the Project](#running-the-project)
+9. [Future Enhancements](#future-enhancements)
+10. [Conclusion](#conclusion)
 
 ---
 
@@ -130,16 +131,6 @@ The platform's API adheres to REST principles, supporting CRUD operations and se
 
 ---
 
-## Future Enhancements
-1. **Gamification**: Add badges, points, and leaderboards to increase engagement.
-2. **Personalized Learning Paths**: Tailored course recommendations based on user interests.
-3. **Mobile App**: Develop native applications for iOS and Android.
-4. **AI-Powered Features**: Use machine learning for personalized recommendations.
-5. **AR/VR Integration**: Immersive learning experiences for certain courses.
-
-
-
-
 ## Running the Project
 To set up and run the project locally:
 
@@ -191,10 +182,10 @@ To set up and run the project locally:
 
     #### Add another `.env` file *outside the server folder*
 
-       ##### React App Base URL
+      ##### React App Base URL
         REACT_APP_BASE_URL=  # Base URL for the backend API (e.g., https://api.example.com)
 
-       ##### Razorpay Configuration
+      ##### Razorpay Configuration
         RAZORPAY_KEY=        # Razorpay API key for payment processing
 
     ![FolderStructure](./public//images/FolderStructure.png)
@@ -206,6 +197,17 @@ To set up and run the project locally:
    ```
 
 The application will be available at `http://localhost:3000`.
+
+
+
+---
+
+## Future Enhancements
+1. **Gamification**: Add badges, points, and leaderboards to increase engagement.
+2. **Personalized Learning Paths**: Tailored course recommendations based on user interests.
+3. **Mobile App**: Develop native applications for iOS and Android.
+4. **AI-Powered Features**: Use machine learning for personalized recommendations.
+5. **AR/VR Integration**: Immersive learning experiences for certain courses.
 
 
 
