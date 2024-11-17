@@ -17,7 +17,11 @@ exports.auth = async (req, res, next) => {
 
 		// If JWT is missing, return 401 Unauthorized response
 		if (!token) {
-			return res.status(401).json({ success: false, message: `Token Missing` });
+			return res.status(401).json(
+				{ 
+					success: false,
+					message: `Token Missing` 
+				});
 		}
 
 		try {
