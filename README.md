@@ -25,9 +25,16 @@ StudyNotion strives to make education more accessible and engaging by providing:
 - A platform for instructors to showcase their expertise and connect with learners worldwide.
 
 
+### Home Page
 ![Homepage](./public/images/Home_Page.png) 
+
+### Catalog 
 ![Catalog](./public/images/Catalog.png)
+
+### AboutUs Page
 ![AboutUs](./public/images/AboutUs.png)
+
+### ContactUs Page
 ![ContactUs](./public/images/ContactUs.png)
 
 ---
@@ -48,9 +55,15 @@ StudyNotion strives to make education more accessible and engaging by providing:
   - Monitor platform metrics like revenue and user statistics.
   - Manage instructors and users.
 
+
+### Login Page
 ![Login](./public/images/Login.png)
+
+### SignUp Page
 ![SignUp](./public/images/SignUp.png)
-![User Profile](./public//images/profile.png) <!-- Add a comprehensive image of the platform features -->
+
+### User Profile Page
+![User Profile](./public//images/profile.png)
 
 ---
 
@@ -60,7 +73,8 @@ The platform follows a **client-server architecture**, comprising:
 2. **Back-end** (NodeJS, ExpressJS): Manages APIs and business logic.
 3. **Database** (MongoDB): Stores user data, courses, and media.
 
-![Courses](./public//images/System%20Architecture%20.png) <!-- Add architecture diagram -->
+### System Architecture 
+![System Architecture](./public//images/System%20Architecture%20.png) <!-- Add architecture diagram -->
 
 ---
 
@@ -81,7 +95,10 @@ The front-end is designed for responsiveness and interactivity using:
 2. **Course Management**: CRUD operations for courses.
 3. **Insights**: Detailed course performance metrics.
 
+### InrolledCourses Page
 ![InrolledCourses](./public//images/InrolledCourses.png)
+
+### Courses Page
 ![Courses](./public//images/Courses.png) 
 
 ---
@@ -188,7 +205,8 @@ To set up and run the project locally:
     ##### Razorpay Configuration
    - RAZORPAY_KEY=        # Razorpay API key for payment processing
 
-    ![FolderStructure](./public//images/FolderStructure.png)
+   ### Folders Structure
+   ![FolderStructure](./public//images/FolderStructure.png)
 
 
 4. Start the development server:
