@@ -120,7 +120,7 @@ The back-end is built using:
 2. **Instructor**: Name, email, password, created courses.
 3. **Course**: Title, description, media content, ratings.
 
-[Database Schema](https://github.com/Sandipkushwaha20/StudyNotion/tree/main/server/models) 
+![User Profile](./public//images/Schema.png)
 
 ---
 
