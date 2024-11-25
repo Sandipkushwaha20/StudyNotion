@@ -63,7 +63,7 @@ export async function BuyCourse(
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message)
     }
-    console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse.data)
+    // console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse.data)
 
     // Opening the Razorpay SDK
     const options = {
@@ -108,7 +108,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
       Authorization: `Bearer ${token}`,
     })
 
-    console.log("VERIFY PAYMENT RESPONSE FROM BACKEND............", response)
+    // console.log("VERIFY PAYMENT RESPONSE FROM BACKEND............", response)
 
     if (!response.data.success) {
       throw new Error(response.data.message)
