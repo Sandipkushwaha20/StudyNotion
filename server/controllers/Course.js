@@ -92,7 +92,7 @@ exports.createCourse = async (req, res) => {
     const newCourse = await Course.create({
       courseName,
       courseDescription,
-      instructor: instructorDetails._id, //Instructor is a refid in Course Schema so I will use instructorDetails
+      instructor: instructorDetails._id, //Instructor is a refid in Course Schema so I will use instructorDetails id
       whatYouWillLearn: whatYouWillLearn,
       price,
       tag,
@@ -228,7 +228,7 @@ exports.getAllCourses = async (req, res) => {
         studentsEnrolled: true,
       }
     )
-      .populate("instructor")
+      .populate("instructor") //replace the ObjectId of instructor with actual data
       .exec()
 
     return res.status(200).json({
@@ -265,7 +265,7 @@ exports.getCourseDetails = async (req, res) => {
         path: "courseContent",
         populate: {
           path: "subSection",
-          select: "-videoUrl",
+          select: "-videoUrl", //'-' sign specifies that the videoUrl field should not be included in the populated subSection documents.
         },
       })
       .exec()

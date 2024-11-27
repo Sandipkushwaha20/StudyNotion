@@ -180,15 +180,15 @@ exports.getEnrolledCourses = async (req, res) => {
         },
       })
       .exec()
+
     userDetails = userDetails.toObject()
     var SubsectionLength = 0
     for (var i = 0; i < userDetails.courses.length; i++) {
       let totalDurationInSeconds = 0
       SubsectionLength = 0
       for (var j = 0; j < userDetails.courses[i].courseContent.length; j++) {
-        totalDurationInSeconds += userDetails.courses[i].courseContent[
-          j
-        ].subSection.reduce((acc, curr) => acc + parseInt(curr.timeDuration), 0)
+        totalDurationInSeconds += userDetails.courses[i].courseContent[j]
+        .subSection.reduce((acc, curr) => acc + parseInt(curr.timeDuration), 0)
         userDetails.courses[i].totalDuration = convertSecondsToDuration(
           totalDurationInSeconds
         )

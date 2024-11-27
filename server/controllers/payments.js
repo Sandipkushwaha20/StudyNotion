@@ -36,7 +36,7 @@ exports.capturePayment = async (req, res) => {
 
       // Check if the user is already enrolled in the course
       //in course model user Id is stored in the from of Object and current user id is 
-      //is in the from of string, so convert it from string to ObjectId by the following code
+      //is in the form of string, so convert it from string to ObjectId by the following code
       const uid = new mongoose.Types.ObjectId(userId)
       if (course.studentsEnroled.includes(uid)) {
         return res

@@ -9,7 +9,7 @@ const { passwordUpdated } = require("../mail/templates/passwordUpdate")
 const Profile = require("../models/Profile")
 require("dotenv").config()
 
-//**************Signup Controller for Registering Users**************
+//! **************Signup Controller for Registering Users**************
 exports.signup = async (req, res) => {
   try {
     // Destructure fields from the request body
@@ -88,6 +88,7 @@ exports.signup = async (req, res) => {
       about: null,
       contactNumber: null,
     })
+    
     const user = await User.create({
       firstName,
       lastName,
@@ -115,7 +116,7 @@ exports.signup = async (req, res) => {
 }
 
 
-//**********Login controller for authenticating users*****************
+//! **********Login controller for authenticating users*****************
 exports.login = async (req, res) => {
   try {
     // Get email and password from request body
@@ -142,12 +143,13 @@ exports.login = async (req, res) => {
       })
     }
 
-    // Generate JWT token and Compare Password
+    //  Compare Password and Generate JWT token
     if (await bcrypt.compare(password, user.password)) {
+      //Generate JWT token
       const token = jwt.sign(
         { email: user.email,
           id: user._id, 
-          accountType: user.accountType // if I will remove it here then u can't use it in middleware, for use you have make DB call
+          accountType: user.accountType // if I will remove it here then u can't use it in middleware, for use you need to make DB call
         },
         process.env.JWT_SECRET,
         {
@@ -158,17 +160,18 @@ exports.login = async (req, res) => {
       // Save token to user document in database
       user.token = token
       user.password = undefined
+
       // Set cookie for token and return success response
       const options = {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       }
   //      cookie name, coo. data , coo. options
-      res.cookie("token", token, options).status(200).json({
+      return res.cookie("token", token, options).status(200).json({
         success: true,
         token,
         user,
-        message: `User Login Success`,
+        message: `User Login Successfully!`,
       })
     } else {
       return res.status(401).json({
@@ -187,7 +190,7 @@ exports.login = async (req, res) => {
 }
 
 
-//**************Send OTP For Email Verification******************
+//! **************Send OTP For Email Verification******************
 exports.sendotp = async (req, res) => {
   try {
     const { email } = req.body
@@ -287,7 +290,7 @@ exports.sendotp = async (req, res) => {
 }
 
 
-//****************Controller for Changing Password********************
+//! ****************Controller for Changing Password********************
 exports.changePassword = async (req, res) => {
   try {
     // Get user data from req.user

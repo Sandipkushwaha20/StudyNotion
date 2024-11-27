@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 const crypto = require("crypto")
 
 
-//**********Reset Password Token**********/
+//! **********Reset Password Token**********/
 exports.resetPasswordToken = async (req, res) => {
   //every user 
   try {
@@ -68,7 +68,7 @@ exports.resetPasswordToken = async (req, res) => {
 }
 
 
-//***********Reset Passward************/
+//! ***********Reset Passward************/
 exports.resetPassword = async (req, res) => {
   try {
     //token is send by front-end so we are taking it from body

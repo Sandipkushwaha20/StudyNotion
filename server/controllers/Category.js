@@ -24,7 +24,7 @@ exports.createCategory = async (req, res) => {
 
     // console.log(CategorysDetails)
 
-    return res.status(200).json({
+    return res.status(201).json({
       success: true,
       message: "Categorys Created Successfully",
     })
@@ -90,6 +90,7 @@ exports.categoryPageDetails = async (req, res) => {
     const categoriesExceptSelected = await Category.find({
       _id: { $ne: categoryId }, //ne => not equal
     })
+
     let differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id

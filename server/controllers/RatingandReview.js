@@ -76,7 +76,7 @@ exports.getAverageRating = async (req, res) => {
     const result = await RatingAndReview.aggregate([
       {
         $match: {
-          course: new mongoose.Types.ObjectId(courseId), // Convert courseId to ObjectId from string
+          course: new mongoose.Types.ObjectId(courseId), // Convert courseId into ObjectId from string
         },
       },
       {

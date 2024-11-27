@@ -2,7 +2,7 @@ const Section = require("../models/Section")
 const Course = require("../models/Course")
 const SubSection = require("../models/Subsection")
 
-//*******CREATE a new section***************
+//! *******CREATE a new section***************
 exports.createSection = async (req, res) => {
   try {
     // Extract the required properties from the request body
@@ -31,7 +31,7 @@ exports.createSection = async (req, res) => {
       { new: true }
     ) //If I will not populate than My updatedCourse will only contain ObjectId not exact object
     //If want exact object than I need to populate it
-      .populate({ //here I'm populating subsection and
+      .populate({ //here I'm populating section and
         path: "courseContent",
         populate: { // here I'm population subsection
           path: "subSection",
@@ -56,7 +56,7 @@ exports.createSection = async (req, res) => {
 }
 
 
-//**************UPDATE a section***************
+//! **************UPDATE a section***************
 exports.updateSection = async (req, res) => {
   try {
     //there will be not need to update Section in course bc course contain Section Id not section data
@@ -94,7 +94,7 @@ exports.updateSection = async (req, res) => {
 }
 
 
-//****************DELETE a section****************
+//! ****************DELETE a section****************
 exports.deleteSection = async (req, res) => {
   try {
     const { sectionId, courseId } = req.body
