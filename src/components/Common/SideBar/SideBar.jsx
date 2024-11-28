@@ -9,9 +9,9 @@ import { IconContext } from 'react-icons';
 import { apiConnector } from '../../../services/apiConnector';
 import { categories } from '../../../services/apis';
 import { BsChevronDown } from 'react-icons/bs';
-import ProfileDropdown from '../../core/Auth/ProfileDropdown';
-import { useSelector } from 'react-redux';
-import { ACCOUNT_TYPE } from '../../../utils/constants';
+// import ProfileDropdown from '../../core/Auth/ProfileDropdown';
+// import { useSelector } from 'react-redux';
+// import { ACCOUNT_TYPE } from '../../../utils/constants';
 
 function SideBar() {
   const [sidebar, setSidebar] = useState(false);
@@ -19,9 +19,9 @@ function SideBar() {
   const [loading , setLoading] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
   const [subLinks, setSubLinks] = useState([]);
-  const { token } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.profile);
-  const { totalItems } = useSelector((state) => state.cart);
+  // const { token } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.profile);
+  // const { totalItems } = useSelector((state) => state.cart);
   
   useEffect(() => {
     (async () => {

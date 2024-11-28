@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from "react";
 import {  AiOutlineShoppingCart } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
@@ -129,14 +127,24 @@ function Navbar() {
           {/* if token is null then user is not login then show login & signUp button */}
           {token === null && (
             <Link to="/login">
-              <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+              <button className={`rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px]
+                ${
+                  matchRoute("/login")
+                    ? "text-yellow-25"
+                    : "text-richblack-100"
+                }`} >
                 Log in
               </button>
             </Link>
           )}
           {token === null && (
             <Link to="/signup">
-              <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+              <button className={`rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px]
+                ${
+                  matchRoute("/signup")
+                    ? "text-yellow-25"
+                    : "text-richblack-100"
+                }`}>
                 Sign up
               </button>
             </Link>

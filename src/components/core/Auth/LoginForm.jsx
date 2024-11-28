@@ -79,11 +79,17 @@ function LoginForm() {
       </label>
       <button
         type="submit"
-        className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+        className="mt-4 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
       >
-        Sign In
+        Log In
       </button>
+      <div>
+        <p className="text-richblack-5 ml-20 text-left ">Don't have an account?
+         <Link to={"/signup"} className="text-yellow-50"> Sign Up</Link>
+         </p>
+      </div>
     </form>
+    
   )
 }
 

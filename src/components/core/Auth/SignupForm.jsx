@@ -2,7 +2,7 @@ import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { sendOtp } from "../../../services/operations/authAPI"
 import { setSignupData } from "../../../slices/authSlice"
@@ -42,7 +42,7 @@ function SignupForm() {
     e.preventDefault()
 
     if (password !== confirmPassword) {
-      toast.error("Passwords Do Not Match")
+      toast.error("Passwords Do Not Match🥺")
       return
     }
     const signupData = {
@@ -187,7 +187,13 @@ function SignupForm() {
         >
           Create Account
         </button>
+        <div>
+        <p className="text-richblack-5 ml-20 text-left">Already have an account?
+         <Link to={"/login"} className="text-yellow-50"> Login</Link>
+         </p>
+      </div>
       </form>
+      
     </div>
   )
 }

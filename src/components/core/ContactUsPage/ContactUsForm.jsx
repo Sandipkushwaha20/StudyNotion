@@ -29,7 +29,7 @@ const ContactUsForm = () => {
       console.log("ERROR MESSAGE - ", error.message)
       setLoading(false)
     }
-  }
+  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {

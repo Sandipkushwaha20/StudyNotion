@@ -23,7 +23,7 @@ import Catalog from "./pages/Catalog"
 import Contact from "./pages/Contact"
 import CourseDetails from "./pages/CourseDetails"
 import Dashboard from "./pages/Dashboard"
-import Error from "./pages/Error"
+// import Error from "./pages/Error"
 import ForgotPassword from "./pages/ForgotPassword"
 
 // Pages
