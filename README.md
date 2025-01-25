@@ -141,7 +141,7 @@ The platform's API adheres to REST principles, supporting CRUD operations and se
 ---
 ## Deployment
 - **Front-end**: Hosted on [Vercel](https://vercel.com).
-- **Back-end**: Hosted on [Render](https://render.com) or [Railway](https://railway.app).
+- **Back-end**: Hosted on [Render](https://render.com).
 - **Database**: MongoDB Atlas for reliable and scalable data storage.
 - **Media**: Cloudinary for image and video management.
 
