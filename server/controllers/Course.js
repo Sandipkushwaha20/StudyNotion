@@ -83,7 +83,7 @@ exports.createCourse = async (req, res) => {
     // Upload the Thumbnail to Cloudinary
     const thumbnailImage = await uploadImageToCloudinary(
       thumbnail, //this is the exact file
-      process.env.FOLDER_NAME // this is the file where we want to upload
+      process.env.FOLDER_NAME // this is the folder where we want to upload
     )
     // console.log(thumbnailImage)
 
@@ -237,7 +237,7 @@ exports.getAllCourses = async (req, res) => {
     })
   } catch (error) {
     console.log(error)
-    return res.status(404).json({
+    return res.status(500).json({
       success: false,
       message: `Can't Fetch Course Data`,
       error: error.message,

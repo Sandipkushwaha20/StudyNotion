@@ -14,7 +14,7 @@ const CodeBlocks = ({
   codeColor,
 }) => {
   return (
-    <div className={`flex ${position} my-20 justify-between flex-col lg:gap-10 gap-10`}>
+    <div className={`flex ${position} my-20 justify-between flex-col lg:gap-10 gap-5`}>
 
 
       {/* Section 1  */}
@@ -44,6 +44,7 @@ const CodeBlocks = ({
       {/* Section 2 */}
       <div className="h-fit code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]">
         {backgroundGradient}
+        
         {/* Indexing */}
         <div className="text-center flex flex-col   w-[10%] select-none text-richblack-400 font-inter font-bold ">
           <p>1</p>

@@ -23,7 +23,6 @@ exports.auth = async (req, res, next) => {
 					message: `Token Missing` 
 				});
 		}
-
 		try {
 			// Verifying the JWT using the secret key stored in environment variables
 			const decode = await jwt.verify(token, process.env.JWT_SECRET);

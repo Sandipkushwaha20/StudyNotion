@@ -66,7 +66,7 @@ exports.categoryPageDetails = async (req, res) => {
         match: { status: "Published" },
         populate: "ratingAndReviews",
       })
-      .exec()
+      .exec() //is used to explicitly execute a query and return a promise.
 
     // console.log("SELECTED COURSE", selectedCategory)
     // Handle the case when the category is not found

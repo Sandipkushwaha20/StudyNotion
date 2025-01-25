@@ -87,6 +87,7 @@ exports.resetPassword = async (req, res) => {
 
     //get userDetails from DB using token
     const userDetails = await User.findOne({ token: token })
+    
    //Validate userDetails
     if (!userDetails) {
       return res.json({

@@ -103,6 +103,7 @@ exports.deleteSection = async (req, res) => {
         courseContent: sectionId,
       },
     })
+    
     const section = await Section.findById(sectionId)
     // console.log(sectionId, courseId)
     

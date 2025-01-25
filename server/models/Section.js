@@ -8,7 +8,7 @@ const sectionSchema = new mongoose.Schema({
 	subSection: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			required: true,
+			required: true, //required: true ensures that if the subSection array contains elements, each element must be a valid ObjectId
 			ref: "SubSection",
 		},
 	],
@@ -16,3 +16,10 @@ const sectionSchema = new mongoose.Schema({
 
 // Export the Section model
 module.exports = mongoose.model("Section", sectionSchema);
+
+
+
+
+   
+
+
