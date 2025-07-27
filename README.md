@@ -237,10 +237,6 @@ StudyNotion leverages modern web technologies to offer a robust and user-friendl
 ---
 
 
-## Contact
-For more details or contributions, reach out at: **[sandipkushwaha2437@gmail.com](mailto:sandipkushwaha2437@gmail.com)**
-
-
 
 
 
